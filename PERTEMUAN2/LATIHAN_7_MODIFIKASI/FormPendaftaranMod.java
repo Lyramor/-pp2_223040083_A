@@ -174,7 +174,7 @@ public class FormPendaftaranMod extends JFrame implements ActionListener, ItemLi
                 char[] password = passwordField.getPassword();
                 String passwordString = new String(password);
 
-                if (passwordString.equals("dzikrise")) {
+                if (passwordString.equals("mmarsanj")) {
                     String nama = kotakNama.getText();
                     String noHp = kotakNoHp.getText();
                     Date tanggalLahir = (Date) spinner.getValue();
