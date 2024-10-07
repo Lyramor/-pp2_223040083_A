@@ -22,7 +22,7 @@ public class FormPendaftaranMod extends JFrame implements ActionListener, ItemLi
     private JRadioButton radio1;
     private JRadioButton radio2;
     private ButtonGroup bg;
-    private Boolean isCheckBoxSelected;
+    private Boolean isCheckBoxSelected = false;  // Inisialisasi nilai default
     private JList<String> listJenisTabungan;
     private DefaultListModel<String> listModel;
     private JMenuBar menuBar;
@@ -59,7 +59,7 @@ public class FormPendaftaranMod extends JFrame implements ActionListener, ItemLi
         calendar.set(Calendar.YEAR, 1990);
         calendar.set(Calendar.MONTH, 0);
         calendar.set(Calendar.DATE, 1);
-        SpinnerDateModel model = new SpinnerDateModel(calendar.getTime(), null, null, calendar.DAY_OF_MONTH);
+        SpinnerDateModel model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
         spinner = new JSpinner(model);
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinner, "dd-MM-yyyy");
         spinner.setEditor(dateEditor);
@@ -119,9 +119,6 @@ public class FormPendaftaranMod extends JFrame implements ActionListener, ItemLi
         slider.setMajorTickSpacing(10);
         slider.setPaintLabels(true);
 
-
-        
-
         menuBar.add(fileMenu);
         fileMenu.add(exitMenuItem);
         this.setJMenuBar(menuBar);
@@ -150,9 +147,7 @@ public class FormPendaftaranMod extends JFrame implements ActionListener, ItemLi
     }
 
     @Override
-    public void stateChanged(ChangeEvent e) {
-        
-    }
+    public void stateChanged(ChangeEvent e) {}
 
     @Override
     public void itemStateChanged(ItemEvent e) {
@@ -222,7 +217,7 @@ public class FormPendaftaranMod extends JFrame implements ActionListener, ItemLi
                 char[] password = passwordField.getPassword();
                 String passwordString = new String(password);
 
-                if (passwordString.equals("dzikrise")) {
+                if (passwordString.equals("mmarsanj")) {
                     if (konfirmasi == JOptionPane.YES_OPTION) {
                         kotakNama.setText("");
                         kotakNoHp.setText("");
