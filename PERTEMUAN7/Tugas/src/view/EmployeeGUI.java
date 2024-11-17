@@ -23,10 +23,10 @@ public class EmployeeGUI {
     private void initialize() {
         frame = new JFrame("Employee Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setSize(800, 400);
         frame.setLayout(new BorderLayout());
 
-        // Table panel
+        // Panel tabel
         JPanel tablePanel = new JPanel(new BorderLayout());
         table = new JTable();
         updateTableData();
@@ -34,7 +34,7 @@ public class EmployeeGUI {
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         frame.add(tablePanel, BorderLayout.CENTER);
 
-        // Button panel
+        // Panel tombol
         JPanel buttonPanel = new JPanel();
         JButton btnAdd = new JButton("Tambah Karyawan");
         JButton btnDelete = new JButton("Hapus Karyawan");
@@ -44,7 +44,7 @@ public class EmployeeGUI {
         buttonPanel.add(btnRefresh);
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Button actions
+        // Aksi tombol
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,63 +79,85 @@ public class EmployeeGUI {
 
     private void showAddEmployeeDialog() {
         JDialog dialog = new JDialog(frame, "Tambah Karyawan Baru", true);
-        dialog.setSize(300, 250);
-        dialog.setLayout(new GridLayout(4, 2));
+        dialog.setSize(400, 300);
+        dialog.setLayout(new GridLayout(7, 2));
 
-        // Form fields
+        // Form field
         JLabel lblName = new JLabel("Nama:");
         JTextField txtName = new JTextField();
         JLabel lblPosition = new JLabel("Posisi:");
         JTextField txtPosition = new JTextField();
+        JLabel lblDepartment = new JLabel("Departemen:");
+        JTextField txtDepartment = new JTextField();
+        JLabel lblEmail = new JLabel("Email:");
+        JTextField txtEmail = new JTextField();
         JLabel lblSalary = new JLabel("Gaji:");
         JTextField txtSalary = new JTextField();
 
         JButton btnSubmit = new JButton("Tambah");
+        JButton btnCancel = new JButton("Batal");
+
+        // Add components to dialog
         dialog.add(lblName);
         dialog.add(txtName);
         dialog.add(lblPosition);
         dialog.add(txtPosition);
+        dialog.add(lblDepartment);
+        dialog.add(txtDepartment);
+        dialog.add(lblEmail);
+        dialog.add(txtEmail);
         dialog.add(lblSalary);
         dialog.add(txtSalary);
-        dialog.add(new JLabel()); // Placeholder
         dialog.add(btnSubmit);
+        dialog.add(btnCancel);
 
+        // Aksi tombol submit
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name = txtName.getText().trim();
-                String position = txtPosition.getText().trim();
+                String name = txtName.getText();
+                String position = txtPosition.getText();
+                String department = txtDepartment.getText();
+                String email = txtEmail.getText();
                 BigDecimal salary;
                 try {
-                    salary = new BigDecimal(txtSalary.getText().trim());
+                    salary = new BigDecimal(txtSalary.getText());
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(dialog, "Gaji harus berupa angka.");
                     return;
                 }
 
-                if (!name.isEmpty() && !position.isEmpty() && salary.compareTo(BigDecimal.ZERO) > 0) {
-                    Employee newEmployee = new Employee(name, position, salary);
-                    employeeDAO.addEmployee(newEmployee);
-                    updateTableData();
-                    dialog.dispose();
-                    JOptionPane.showMessageDialog(frame, "Karyawan berhasil ditambahkan!");
-                } else {
-                    JOptionPane.showMessageDialog(dialog, "Isi semua field dengan benar.");
+                if (name.isEmpty() || position.isEmpty() || department.isEmpty() || email.isEmpty()) {
+                    JOptionPane.showMessageDialog(dialog, "Semua field harus diisi.");
+                    return;
                 }
+
+                Employee newEmployee = new Employee(name, position, department, email, salary);
+                employeeDAO.addEmployee(newEmployee);
+                updateTableData();
+                dialog.dispose();
+                JOptionPane.showMessageDialog(frame, "Karyawan berhasil ditambahkan!");
             }
         });
 
-        dialog.setLocationRelativeTo(frame);
+        // Aksi tombol cancel
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
+
         dialog.setVisible(true);
     }
 
     private void updateTableData() {
         List<Employee> employees = employeeDAO.getAllEmployees();
-        String[] columnNames = {"ID", "Nama", "Posisi", "Gaji"};
+        String[] columnNames = {"ID", "Nama", "Posisi", "Departemen", "Email", "Gaji"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
         for (Employee emp : employees) {
-            Object[] row = {emp.getId(), emp.getName(), emp.getPosition(), emp.getSalary()};
+            Object[] row = {emp.getId(), emp.getName(), emp.getPosition(), emp.getDepartment(), emp.getEmail(), emp.getSalary()};
             model.addRow(row);
         }
         table.setModel(model);
