@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/model/ItemMapper.java</file>
-            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/controller/TechnoShopController.java</file>
+            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/model/ProductMapper.java</file>
+            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/controller/ProductsController.java</file>
             <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/Main.java</file>
-            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/model/Item.java</file>
+            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/mybatis-config.xml</file>
             <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/model/MyBatisUtil.java</file>
-            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/view/TechnoShopView.java</file>
+            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/model/Product.java</file>
+            <file>file:/D:/Unpas_223040083/Semester5/PRAKTIKUM_PEMOGRAMAN_II/PERTEMUAN9/TechnoShop/src/view/ProductsView.java</file>
         </group>
     </open-files>
 </project-private>
